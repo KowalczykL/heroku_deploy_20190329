@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
 var invoicesRouter = require('./routes/invoicesRouter'); //New module
 var testsRouter = require('./routes/testsRouter'); //New module
+var tasksRouter = require('./routes/tasksRouter'); //New module
 var compression = require('compression');
 var helmet = require('helmet');
 
@@ -20,8 +21,7 @@ var app = express();
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var dev_db_url = 'mongodb://puszatek:puszatek1@ds143474.mlab.com:43474/db_libr_tut';
-var mongoDB = process.env.MONGODB_URI || dev_db_url;
+var mongoDB = 'mongodb://puszatek:puszatek1@ds143474.mlab.com:43474/db_libr_tut';
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
@@ -48,7 +48,7 @@ app.use('/users', usersRouter);
 app.use('/catalog', catalogRouter);  // Add catalog routes to middleware chain.
 app.use('/invoices', invoicesRouter); //New module for invoices, i need this name pattern
 app.use('/tests', testsRouter); //For tests
-//app.use('/tasks', tasksRouter); //For tasks module
+app.use('/tasks', tasksRouter); //For tasks module
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

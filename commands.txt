@@ -3,6 +3,7 @@ win
 devstart
 SET DEBUG=express-locallibrary-tutorial:* & npm run devstart
 
+git push heroku master
 
-
+stark-headland-63594.herokuapp.com
 
