@@ -1,0 +1,23 @@
+extends invoices_layout
+
+block content
+  h1= title
+  
+  ul
+    each invoice in invoice_list
+      li 
+        a(href=invoice.url) #{invoice.id} 
+        <br>
+        | #{invoice.supplier.name} 
+        | #{invoice.payable_to}
+        | #{invoice.is_paid}
+        
+        | #{invoice.item.name} 
+        | #{invoice.value} 
+        <br>
+        a(href=invoice.url+"/pay") [Pay GET]
+        form(method='POST' action=(invoice.url)+'/pay')
+          button.btn.btn-primary(type='submit') Pay POST
+        <hr>          
+    else
+      li There are no genres.
